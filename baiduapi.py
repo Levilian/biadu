@@ -4,18 +4,26 @@ accessKey = "g1m6DeA6pc0ToMr2wZeFF5q6Ob1hH2R3"
 page_num = "0"
 
 url = baseUrl + "&page_num=" +page_num + "&scope=1&region=杭州&output=json&ak=" + accessKey
-print url
 file_write = "C:\Users\Administrator\Desktop\\baiduapi2.txt"
 
 import urllib2 
 import json 
 
-
 def fetch(url):
     response = urllib2.urlopen(url)
+    print url
     data = response.read()
+    print data
     parsedData = json.loads(data)
     return parsedData
+
+baseURL_2 = "http://api.map.baidu.com/geocoder/v2/?address="
+ak_2 = "&output=json&ak=g1m6DeA6pc0ToMr2wZeFF5q6Ob1hH2R3"
+
+
+url_2=baseURL_2 + "地铁一号线南苑地铁出口" + ak_2
+fetch(url_2)
+
 
 with open(file_write,'a') as f:
     num_posts = fetch(url)["total"]
@@ -24,7 +32,7 @@ with open(file_write,'a') as f:
         page_num = str(i)
         print "This is page " + str(i)
         url = baseUrl + "&page_num=" +page_num + "&scope=1&region=杭州&output=json&ak=" + accessKey
-        fetch(url)
+
     
         posts = fetch(url)["results"]
         
@@ -34,11 +42,11 @@ with open(file_write,'a') as f:
             lng = str(post['location']['lng'])
             address = post["address"]
             name = post["name"]
-            try:
-                street_id = str(post["street_id"])
-            except:
-                street_id =''
-                address = ''
+            #try:
+            #   street_id = str(post["street_id"])
+            #except:
+                #street_id =''
+            street_id = str(post.get("street_id", ''))
             to_write = name + ';' + address + ';' +  uid + ';' + lat + ';' + lng
             f.write(to_write.encode('utf-8') + '\n')
     f.close()
