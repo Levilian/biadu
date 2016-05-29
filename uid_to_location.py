@@ -34,9 +34,11 @@ with open(fileWrite, 'w') as f:
             response = fetch(url)
             content = response['result']
             lat = str(content['location']['lat'])
-            lng = str(content['location']['lng'])
+            lng = str(content['location']['lng']) 
+            pre = str(content['precision'])
+            confi = str(content['confidence'])
             #if content['detail'].isequal(1):
-            toWrite = str(uid) + ';' + lat + ';' + lng +'\n'
+            toWrite = str(uid) + ';' + lat + ';' + lng + pre + ';' + confi + '\n'
             
         except:
             toWrite = str(uid)
