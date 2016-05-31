@@ -2,7 +2,7 @@
 import urllib2 
 import json 
 
-class Detail_info:
+class Pri_info:
     
     def __init__(self,s,f):
         self.search_name = s
@@ -50,6 +50,6 @@ class Detail_info:
             f.close()
             f = open(file_write,"a")
         
-tea_house = Detail_info("茶馆","tea_house")
+tea_house = Pri_info("茶馆","tea_house")
 tea_house.write()
 
