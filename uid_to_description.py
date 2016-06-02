@@ -134,9 +134,9 @@ class Detailed_info(Pri_info):
             #f = open(fileWrite, 'a')
         #f.close()    
 
-tea_house1 = Pri_info("甜品","dessert")
+tea_house1 = Pri_info("餐厅","restaurant_CT")
 tea_house1.write()
-tea_house = Detailed_info("甜品","dessert")           
+tea_house = Detailed_info("餐厅","restaurant_CT")           
 tea_house.write()                    
                 
             
