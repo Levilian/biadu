@@ -25,8 +25,9 @@ class Pri_info:
         self.file_name = f
      
     def write(self):
-        access_token = "2.00juYUmF0dYhVk4f50df99a8UEuKkD&keyword="
+        access_token = "2.00zJSBWCDDbLVD7f6c69828efeWmfB&keyword="
         # 2.00zJSBWCDDbLVD7f6c69828efeWmfB
+        # 2.00juYUmF0dYhVk4f50df99a8UEuKkD
         base_url = "https://api.weibo.com/2/place/pois/search.json?access_token="
         keyword = my_urlencode(self.search_name)
         city = "&city=0571&count=50&page="
@@ -52,7 +53,7 @@ class Pri_info:
                     try:
                         poiid = str(post['poiid'])
                         title = post['title']
-                        address = str(post['address'])
+                        address = post['address']
                         lat = str(post['lat'])
                         lon = str(post['lon'])
                         category = str(post.get('category',' '))
@@ -61,8 +62,8 @@ class Pri_info:
                         checkin_num = str(post.get('checkin_num',' '))
                         photo_num = str(post.get('photo_num',' '))
                         checkin_user_num = str(post.get('checkin_user_num',' '))
-                        #to_write = poiid + ';' + title + ';' + address + ';' + lat + ';' + lon + ';' + category + ';' + category_name + ';'+ categorys +';'+checkin_num+';'+checkin_user_num+';'+photo_num
-                        to_write = '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s'%(poiid, title, address, lat, lon, category, category_name, categorys, checkin_num, photo_num, checkin_user_num, photo_num)
+                        to_write = poiid + ';' + title + ';' + address + ';' + lat + ';' + lon + ';' + category + ';' + category_name + ';'+ categorys +';'+checkin_num+';'+checkin_user_num+';'+photo_num
+                        #to_write = '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s'%(poiid, title, address, lat, lon, category, category_name, categorys, checkin_num, photo_num, checkin_user_num, photo_num)
                     except Exception,e:
                         to_write = ""
                         print str(e)   
@@ -70,5 +71,5 @@ class Pri_info:
             f.close()
             #f = open(file_write,"a")
 
-teahouse = Pri_info("奶茶","sina_milktea")
+teahouse = Pri_info("茶","sina_tea")
 teahouse.write()
